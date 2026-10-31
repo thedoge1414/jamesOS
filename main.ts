@@ -348,22 +348,29 @@ function unlockedMenu () {
         f f f f f f f f f f f f f f f f 
         `),
     miniMenu.createMenuItem("Unlock other devices", assets.image`myImage3`),
-    miniMenu.createMenuItem("Toggle Authorization Override")
+    miniMenu.createMenuItem("Toggle Authorization Override"),
+    miniMenu.createMenuItem("Back to main meny")
     )
-    miniMenu.setMenuStyleProperty(myMenu3, miniMenu.MenuStyleProperty.Width, 150)
+    miniMenu.setMenuStyleProperty(myMenu3, miniMenu.MenuStyleProperty.Width, 140)
     miniMenu.onButtonPressed(myMenu3, miniMenu.Button.A, function (selection, selectedIndex) {
-        miniMenu.close(myMenu3)
         if (selectedIndex == 0) {
             blockSettings.writeNumber("unlocked", 0)
             StartBootloader()
+            miniMenu.close(myMenu3)
         } else if (selectedIndex == 1) {
             pins.P0.analogWrite(5161)
+            miniMenu.close(myMenu3)
         } else if (selectedIndex == 2) {
             if (blockSettings.readNumber("authoverride") == 1) {
                 blockSettings.writeNumber("authoverride", 0)
+                console.log("Turned off auth override")
             } else {
                 blockSettings.writeNumber("authoverride", 1)
+                console.log("Turned on auth override")
             }
+        } else if (selectedIndex == 3) {
+            closeallMenus()
+            StartOS()
         }
     })
 }
