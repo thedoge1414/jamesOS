@@ -305,13 +305,6 @@ controller.combos.attachCombo("" + controller.combos.idToString(controller.combo
     console.log("Unlocking connected device to P0")
     pins.P0.analogWrite(5161)
 })
-controller.combos.attachCombo("" + controller.combos.idToString(controller.combos.ID.up) + controller.combos.idToString(controller.combos.ID.up) + controller.combos.idToString(controller.combos.ID.B), function () {
-    if (blockSettings.readNumber("authoverride") == 1) {
-        blockSettings.writeNumber("authoverride", 0)
-    } else {
-        blockSettings.writeNumber("authoverride", 1)
-    }
-})
 function OsOptions () {
     closeallMenus()
     OSOptionsMenu = miniMenu.createMenu(
@@ -354,26 +347,9 @@ function unlockedMenu () {
         f f f 2 2 2 2 2 2 2 2 2 2 f f f 
         f f f f f f f f f f f f f f f f 
         `),
-    miniMenu.createMenuItem("Unlock other devices", assets.image`myImage3`, true)
+    miniMenu.createMenuItem("Unlock other devices", assets.image`myImage3`),
+    miniMenu.createMenuItem("Toggle Authorization Override")
     )
-    miniMenu.setFrame(myMenu3, img`
-        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-        2 2 . 2 . 2 . 2 . 2 . 2 . 2 2 
-        2 . . . . . . . . . . . . . 2 
-        2 2 . . . . . . . . . . . 2 2 
-        2 . . . . . . . . . . . . . 2 
-        2 2 . . . . . . . . . . . 2 2 
-        2 . . . . . . . . . . . . . 2 
-        2 2 . . . . . . . . . . . 2 2 
-        2 . . . . . . . . . . . . . 2 
-        2 2 . . . . . . . . . . . 2 2 
-        2 . . . . . . . . . . . . . 2 
-        2 2 . . . . . . . . . . . 2 2 
-        2 . . . . . . . . . . . . . 2 
-        2 2 . 2 . 2 . 2 . 2 . 2 . 2 2 
-        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
-        `)
-    miniMenu.setMenuStyleProperty(myMenu3, miniMenu.MenuStyleProperty.DisabledItemsSelectable, 1)
     miniMenu.setMenuStyleProperty(myMenu3, miniMenu.MenuStyleProperty.Width, 150)
     miniMenu.onButtonPressed(myMenu3, miniMenu.Button.A, function (selection, selectedIndex) {
         miniMenu.close(myMenu3)
@@ -382,6 +358,12 @@ function unlockedMenu () {
             StartBootloader()
         } else if (selectedIndex == 1) {
             pins.P0.analogWrite(5161)
+        } else if (selectedIndex == 2) {
+            if (blockSettings.readNumber("authoverride") == 1) {
+                blockSettings.writeNumber("authoverride", 0)
+            } else {
+                blockSettings.writeNumber("authoverride", 1)
+            }
         }
     })
 }
