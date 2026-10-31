@@ -304,8 +304,7 @@ function unlockedMenu () {
         f f f 2 2 2 2 2 2 2 2 2 2 f f f 
         f f f f f f f f f f f f f f f f 
         `),
-    miniMenu.createMenuItem("Unlock other devices", assets.image`myImage3`, true),
-    miniMenu.createMenuItem("Authorize action")
+    miniMenu.createMenuItem("Unlock other devices", assets.image`myImage3`, true)
     )
     miniMenu.setFrame(myMenu3, img`
         2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
@@ -333,8 +332,6 @@ function unlockedMenu () {
             StartBootloader()
         } else if (selectedIndex == 1) {
             pins.P0.analogWrite(5161)
-        } else if (selectedIndex == 2) {
-        	
         }
     })
 }
