@@ -256,7 +256,11 @@ controller.combos.attachCombo("" + controller.combos.idToString(controller.combo
     pins.P0.analogWrite(5161)
 })
 controller.combos.attachCombo("" + controller.combos.idToString(controller.combos.ID.up) + controller.combos.idToString(controller.combos.ID.up) + controller.combos.idToString(controller.combos.ID.B), function () {
-    blockSettings.writeNumber("authoverride", 1)
+    if (blockSettings.readNumber("authoverride") == 1) {
+        blockSettings.writeNumber("authoverride", 0)
+    } else {
+        blockSettings.writeNumber("authoverride", 1)
+    }
 })
 function OsOptions () {
     closeallMenus()
