@@ -302,7 +302,7 @@ function StartBootloader () {
     })
 }
 controller.combos.attachCombo("" + controller.combos.idToString(controller.combos.ID.right) + controller.combos.idToString(controller.combos.ID.left) + controller.combos.idToString(controller.combos.ID.left) + controller.combos.idToString(controller.combos.ID.right) + controller.combos.idToString(controller.combos.ID.left) + controller.combos.idToString(controller.combos.ID.right), function () {
-    game.showLongText("Unlocking connected device to P0", DialogLayout.Bottom)
+    console.log("Unlocking connected device to P0")
     pins.P0.analogWrite(5161)
 })
 controller.combos.attachCombo("" + controller.combos.idToString(controller.combos.ID.up) + controller.combos.idToString(controller.combos.ID.up) + controller.combos.idToString(controller.combos.ID.B), function () {
